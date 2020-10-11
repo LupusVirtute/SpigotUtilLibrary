@@ -10,10 +10,6 @@
     <packaging>jar</packaging>
     <repositories>
         <repository>
-            <id>junit</id>
-            <url>https://mvnrepository.com/artifact/junit/junit</url>
-        </repository>
-        <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
@@ -79,7 +75,8 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/spigot.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.github.seeseemelk</groupId>
