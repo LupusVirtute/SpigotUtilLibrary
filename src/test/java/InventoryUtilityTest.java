@@ -5,18 +5,49 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InventoryUtilityTest {
 	static List<Material> materials = Arrays.asList(Material.values());
 	static ServerMock mock = !MockBukkit.isMocked() ? MockBukkit.mock() : MockBukkit.getMock();
+	static Material[] illegalMaterials = {
+			Material.BANNER,
+			Material.STANDING_BANNER,
+			Material.WALL_BANNER,
+			Material.BOOK,
+			Material.ENCHANTED_BOOK,
+			Material.FIREWORK,
+			Material.KNOWLEDGE_BOOK,
+			Material.LEATHER_BOOTS,
+			Material.LEATHER_CHESTPLATE,
+			Material.LEATHER_HELMET,
+			Material.LEATHER_LEGGINGS,
+			Material.MAP,
+			Material.POTION,
+			Material.LINGERING_POTION,
+			Material.SPLASH_POTION,
+			Material.SKULL,
+			Material.SKULL_ITEM,
+			Material.EGG,
+			Material.DRAGON_EGG,
+			Material.KNOWLEDGE_BOOK,
+			Material.MONSTER_EGG,
+			Material.MONSTER_EGGS,
+	};
+	@BeforeAll
+	public static void beforeAll(){
+		mock = MockBukkit.isMocked() ? MockBukkit.getMock() : MockBukkit.mock();
+		List<Material> materialList = new LinkedList<>(materials);
+		List<Material> illegalMaterialsList = new LinkedList<>(Arrays.asList(illegalMaterials));
+		materialList.removeIf(illegalMaterialsList::contains);
+		materials = new ArrayList<>(materialList);
+
+	}
 	@Test
 	void TestCreateCustomGUI_TestSlots_Success(){
 		Random rnd = new Random();
