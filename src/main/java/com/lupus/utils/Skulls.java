@@ -199,7 +199,11 @@ public class Skulls {
 		for(int i=fromSlot;(i+digits.length())<=toSlot;i++){
 			inv.setItem(i,numberSkulls[0]);
 		}
-		for(int i=digits.length()-1,j=toSlot;i>=0 && j >= fromSlot;i--,j--){
+		for(
+				int i=digits.length()-1,j=toSlot;
+				i>=0 && j > fromSlot;
+				i--,j--
+		){
 			inv.setItem(j,numberSkulls[(digits.charAt(i) - '0')]);
 		}
 	}
