@@ -27,47 +27,47 @@ import org.bukkit.entity.Player;
  */
 public class Particles {
 	private static final double RENDER_DISTANCE = 16.0;
-	public static void spawnColoredParticleForPlayer(Player p,Particle particleToUse,Location loc,double r,double g,double b){
-		p.spawnParticle(particleToUse, loc, 0,r,g,b,1d);
+	public static void spawnColoredParticleForPlayer(Player p,Particle particleToUse,Location loc,Particle.DustOptions options){
+		p.spawnParticle(particleToUse, loc,1,options);
 	}
 	public static void visualizeRectangularBorderForPlayer(World warudo, int maxX, int maxZ, int minX, int minZ, Player p, Color color) {
 		if (!p.isOnline()) {
 			return;
 		}
+		if (!p.getLocation().getWorld().getUID().equals(warudo.getUID()))
+			return;
 		maxZ++;
 		minX--;
 		Location loc;
 		Particle particleToUse = Particle.REDSTONE;
-		double r = color.getRed()/255d+0.0001d;
-		double g = color.getGreen()/255d;
-		double b = color.getBlue()/255d;
+		Particle.DustOptions options = new Particle.DustOptions(color,4);
 		final int pYLoc = p.getLocation().getBlockY();
 		for (int i = minX; i <= maxX; i++) {
 			loc = new Location(warudo, i, pYLoc, maxZ);
 			if (loc.distance(p.getLocation()) < 16.0) {
-				spawnColoredParticleForPlayer(p,particleToUse,loc,r,g,b);
-				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),r,g,b);
-				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),r,g,b);
+				spawnColoredParticleForPlayer(p,particleToUse,loc,options);
+				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),options);
+				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),options);
 			}
 			loc = new Location(warudo, i, pYLoc, minZ+1);
 			if (loc.distance(p.getLocation()) < 16.0) {
-				spawnColoredParticleForPlayer(p,particleToUse,loc,r,g,b);
-				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),r,g,b);
-				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),r,g,b);
+				spawnColoredParticleForPlayer(p,particleToUse,loc,options);
+				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),options);
+				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),options);
 			}
 		}
 		for (int i = minZ; i <= maxZ; i++) {
 			loc = new Location(warudo, minX+1, pYLoc, i);
 			if (loc.distance(p.getLocation()) < 16.0) {
-				spawnColoredParticleForPlayer(p,particleToUse,loc,r,g,b);
-				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),r,g,b);
-				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),r,g,b);
+				spawnColoredParticleForPlayer(p,particleToUse,loc,options);
+				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),options);
+				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),options);
 			}
 			loc = new Location(warudo, maxX, pYLoc, i);
 			if (loc.distance(p.getLocation()) < 16.0) {
-				spawnColoredParticleForPlayer(p,particleToUse,loc,r,g,b);
-				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),r,g,b);
-				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),r,g,b);
+				spawnColoredParticleForPlayer(p,particleToUse,loc,options);
+				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),options);
+				spawnColoredParticleForPlayer(p,particleToUse,loc.add(0, 1, 0),options);
 			}
 		}
 	}

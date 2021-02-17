@@ -32,9 +32,8 @@ public class LocationsUtil {
 		Set<Material> b = new HashSet<>();
 		b.add(Material.CACTUS);
 		b.add(Material.FIRE);
-		b.add(Material.MAGMA);
+		b.add(Material.MAGMA_BLOCK);
 		b.add(Material.LAVA);
-		b.add(Material.STATIONARY_LAVA);
 		return b;
 	}
 
